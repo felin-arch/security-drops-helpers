@@ -1,15 +1,13 @@
-var App = require('ghost-app'),
+var App = require('ghost-app');
 
-    MyApp;
-
-MyApp = App.extend({
+const SecurityDropsHelpers = App.extend({
 
     install: function () {},
 
     uninstall: function () {},
 
     activate: function () {
-      this.app.helpers.register('ifeq', this._ifEq);
+      this.ghost.helpers.register('ifeq', this._ifEq);
     },
 
     deactivate: function () {},
@@ -20,4 +18,4 @@ MyApp = App.extend({
 
 });
 
-module.exports = MyApp;
+module.exports = SecurityDropsHelpers;
