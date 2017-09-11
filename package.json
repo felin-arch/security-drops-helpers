@@ -6,7 +6,7 @@
   },
   "ghost": {
     "permissions": {
-      "helpers": ["ifeq"]
+      "helpers": ["ifeq", "pill"]
     }
   },
   "description": "Provide helper methods for www.securitydrops.com",
