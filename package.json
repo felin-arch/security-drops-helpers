@@ -10,7 +10,7 @@
     }
   },
   "scripts": {
-    "test": "mocha *.spec.js lib/*.spec.js"
+    "test": "mocha lib/*.spec.js"
   },
   "description": "Provide helper methods for www.securitydrops.com",
   "license": "MIT",
