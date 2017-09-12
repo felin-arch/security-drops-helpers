@@ -6,7 +6,7 @@
   },
   "ghost": {
     "permissions": {
-      "helpers": ["ifeq", "pill"]
+      "helpers": ["ifeq", "pill", "wrap"]
     }
   },
   "scripts": {

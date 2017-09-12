@@ -1,5 +1,8 @@
 const App = require('ghost-app');
-const Wrapper = require('./lib/wrapper');
+
+const path = require('path');
+const Wrapper = require(path.resolve(
+  path.dirname(module.parent.filename), '../../../../../content/apps/security-drops-helpers/lib/wrapper'));
 
 const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -11,23 +14,6 @@ const pills = [
   '<svg width="24" height="41" viewBox="0 0 32 56" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M70 6c8.837 0 16 7.163 16 16v23.273c0 8.836-7.163 16-16 16s-16-7.164-16-16V22c0-8.837 7.163-16 16-16zm0 3.88c-6.694 0-12.12 5.426-12.12 12.12v19.394c0 6.694 5.426 12.12 12.12 12.12 6.694 0 12.12-5.426 12.12-12.12V22c0-6.694-5.426-12.12-12.12-12.12zm0 2.908c5.088 0 9.212 4.124 9.212 9.212v19.394c0 5.088-4.124 9.212-9.212 9.212s-9.212-4.124-9.212-9.212V22c0-5.088 4.124-9.212 9.212-9.212z" id="pill3"/></defs><use fill="#E6E6E6" fill-rule="nonzero" xlink:href="#pill3" transform="translate(-54.000000, -6.000000)"/></svg>'
 ]
 
-class Helpers {
-
-  static ifEq(a, b, options) {
-    return (a === b) ? options.fn(this) : options.inverse(this);
-  }
-
-  static pill(a, b, options) {
-    return pills[randomIntFromInterval(0, 2)];
-  }
-
-  static wrap(title, options) {
-    let w = new Wrapper();
-    return w.wrap(title);
-  }
-
-}
-
 const SecurityDropsHelpers = App.extend({
 
     install: function () {},
@@ -35,14 +21,26 @@ const SecurityDropsHelpers = App.extend({
     uninstall: function () {},
 
     activate: function () {
-      this.ghost.helpers.register('ifeq', Helpers.ifEq);
-      this.ghost.helpers.register('pill', Helpers.pill);
+      this.ghost.helpers.register('ifeq', this._ifEq);
+      this.ghost.helpers.register('pill', this._pill);
+      this.ghost.helpers.register('wrap', this._wrap);
     },
 
     deactivate: function () {},
 
-});
+    _ifEq(a, b, options) {
+      return (a === b) ? options.fn(this) : options.inverse(this);
+    },
 
-SecurityDropsHelpers.helpers = Helpers;
+    _pill(a, b, options) {
+      return pills[randomIntFromInterval(0, 2)];
+    },
+
+    _wrap(title) {
+      let w = new Wrapper('X');
+      return w.wrap(title);
+    }
+
+});
 
 module.exports = SecurityDropsHelpers;
