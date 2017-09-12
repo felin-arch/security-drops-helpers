@@ -9,6 +9,9 @@
       "helpers": ["ifeq", "pill"]
     }
   },
+  "scripts": {
+    "test": "mocha *.spec.js lib/*.spec.js"
+  },
   "description": "Provide helper methods for www.securitydrops.com",
   "license": "MIT",
   "repository": "https://github.com/felin-arch/security-drops-helpers"
