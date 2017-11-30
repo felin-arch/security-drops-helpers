@@ -2,7 +2,7 @@ const App = require('ghost-app');
 
 const path = require('path');
 const Wrapper = require(path.resolve(
-  path.dirname(module.parent.filename), '../../../../../content/apps/security-drops-helpers/lib/wrapper'));
+  path.dirname(module.parent.filename), '../../../../../../content/apps/security-drops-helpers/lib/wrapper'));
 
 const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
